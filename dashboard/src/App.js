@@ -17,15 +17,12 @@ function App() {
     <BrowserRouter>
       <div align="center">
         <Header h1 textAlign="center">GuardRails</Header>
+        <Link to="/">/</Link>
+        <Link to="/results">e</Link>
       </div>
-      
       <Switch>
-        <Route path='/'>
-          <SubmissionForm />
-        </Route>
-        <Route path='/results'>
-          <ResultLists />
-        </Route>
+        <Route path='/results' component={ResultLists} exact />
+        <Route path='' component={SubmissionForm} exact />
       </Switch>
     </BrowserRouter>
   );

@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Segment, Input, Select, Button } from 'semantic-ui-react';
+import CustomDateTimeInput from './CustomDateTimeInput';
 
 export default function SubmissionForm() {
+  let [queuedAt, setQueuedAt] = useState('');
+  let [scannedAt, setScannedAt] = useState('');
+  let [finishedAt, setFinishedAt] = useState('');
+
   const status = [
     { 
       key: 'Queued', value: 'Queued', text: 'Queued'
@@ -38,19 +43,19 @@ export default function SubmissionForm() {
           <Form.TextArea required label="Findings" placeholder="You can type or copy-paste your JSONB here" />
           <Form.Group widths="equal">
             <Form.Field 
-              control={Input}
+              control={CustomDateTimeInput}
               required
               label="Queued At"
               placeholder="Queued At"
             />
             <Form.Field 
-              control={Input}
+              control={CustomDateTimeInput}
               required
               label="Scanned At"
               placeholder="Scanned At"
             />
             <Form.Field 
-              control={Input}
+              control={CustomDateTimeInput}
               required
               label="Finished At"
               placeholder="Finished At"
