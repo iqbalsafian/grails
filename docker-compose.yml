@@ -1,0 +1,13 @@
+version: "3.7"
+
+services: 
+    dashboard:
+        build: ./dashboard
+        expose: 
+            - 8112
+        environment:
+            REACT_APP_PORT=8112
+        links: 
+            - dashboard
+        command: yarn start
+        
