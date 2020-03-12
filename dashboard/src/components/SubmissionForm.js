@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Segment, Input, Select, Button, Header } from 'semantic-ui-react';
-import CustomDateTimeInput from './CustomDateTimeInput';
+import { Form, Segment, Select, Button } from 'semantic-ui-react';
 import axios from 'axios';
 import moment from 'moment';
 import { DatePicker } from 'antd';
@@ -66,7 +65,6 @@ export default function SubmissionForm() {
               label="Status"
               options={selectStatus}
               placeholder="Status"
-              defaultValue={selectStatus[0].key}
               value={status}
               onChange={(_, {value}) => setStatus(value)}
             />
@@ -77,6 +75,7 @@ export default function SubmissionForm() {
             placeholder="You can type or copy-paste your JSONB here" 
             value={findings}
             onChange={(_,{value}) => setFindings(value)}
+            style={{minHeight: 150}}
           />
           <Form.Group widths="equal">
             <Form.Field style={{textAlign:'center'}}>
