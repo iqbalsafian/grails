@@ -16,7 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <div align="center">
-        <Header h1 textAlign="center">GuardRails</Header>
+        <Header as="h1" textAlign="center">GuardRails</Header>
         <Link to="/">/</Link>
         <Link to="/results">e</Link>
       </div>

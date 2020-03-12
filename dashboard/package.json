@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@blueprintjs/core": "^3.24.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.0.2",
+    "axios": "^0.19.2",
+    "globalize": "^1.4.2",
     "input-moment": "^0.4.0",
     "moment": "^2.24.0",
+    "rc-datetime-picker": "^1.6.1",
     "react": "^16.13.0",
     "react-datepicker": "^2.14.0",
     "react-datetime-inputs": "^0.0.6",
@@ -15,6 +20,9 @@
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "react-semantic-ui-datepickers": "^2.3.0",
+    "react-widgets": "^4.4.11",
+    "react-widgets-globalize": "^5.0.20",
     "semantic-ui-react": "^0.88.2"
   },
   "scripts": {

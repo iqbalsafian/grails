@@ -1,13 +1,40 @@
 import React, { useState } from 'react';
-import { Form, Segment, Input, Select, Button } from 'semantic-ui-react';
+import { Form, Segment, Input, Select, Button, Header } from 'semantic-ui-react';
 import CustomDateTimeInput from './CustomDateTimeInput';
+import axios from 'axios';
+import moment from 'moment';
+import { DatePicker } from 'antd';
 
 export default function SubmissionForm() {
-  let [queuedAt, setQueuedAt] = useState('');
-  let [scannedAt, setScannedAt] = useState('');
-  let [finishedAt, setFinishedAt] = useState('');
+  const [repositoryName, setRepositoryName] = useState('');
+  const [status, setStatus] = useState('');
+  const [findings, setFindings] = useState('');
+  const [queuedAt, setQueuedAt] = useState(moment(new Date(), 'DD-MM-YYYY HH:mm'));
+  const [scannedAt, setScannedAt] = useState(moment(new Date(), 'DD-MM-YYYY HH:mm'));
+  const [finishedAt, setFinishedAt] = useState(moment(new Date(), 'DD-MM-YYYY HH:mm'));
+  const [loading, setLoading] = useState(false);
 
-  const status = [
+  const submitForm = async () => {
+    setLoading(true);
+    console.log(queuedAt);
+    await axios.post('http://localhost:3001', {
+      repository_name: repositoryName,
+      status,
+      findings,
+      queued_at: queuedAt,
+      scanned_at: scannedAt,
+      finished_at: finishedAt
+    })
+    .then(response=>{
+      console.log(response);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+    setLoading(false);
+  }
+
+  const selectStatus = [
     { 
       key: 'Queued', value: 'Queued', text: 'Queued'
     },
@@ -24,48 +51,67 @@ export default function SubmissionForm() {
   return(
     <div>
       <Segment >
-        <Form loading={false}>
+        <Form loading={loading}>
           <Form.Group widths="equal">
-            <Form.Field
-              control={Input}
+            <Form.Input
               required
               label="Repo Name"
               placeholder="Repo Name"
+              value={repositoryName}
+              onChange={(_, {value}) => setRepositoryName(value)}
             />
             <Form.Field 
               control={Select}
               required
               label="Status"
-              options={status}
+              options={selectStatus}
               placeholder="Status"
+              value={status}
+              onChange={(_, {value}) => setStatus(value)}
             />
           </Form.Group>
-          <Form.TextArea required label="Findings" placeholder="You can type or copy-paste your JSONB here" />
-          <Form.Group widths="equal">
-            <Form.Field 
-              control={CustomDateTimeInput}
-              required
-              label="Queued At"
-              placeholder="Queued At"
-            />
-            <Form.Field 
-              control={CustomDateTimeInput}
-              required
-              label="Scanned At"
-              placeholder="Scanned At"
-            />
-            <Form.Field 
-              control={CustomDateTimeInput}
-              required
-              label="Finished At"
-              placeholder="Finished At"
-            />
-          </Form.Group>
-          <Form.Field 
-            id="form-button-control-public"
-            control={Button}
-            content="Submit"
+          <Form.TextArea 
+            required 
+            label="Findings" 
+            placeholder="You can type or copy-paste your JSONB here" 
+            value={findings}
+            onChange={(_,{value}) => setFindings(value)}
           />
+          <Form.Group widths="equal">
+            <Form.Field style={{textAlign:'center'}}>
+              <div style={{width:'100%', textAlign:'center'}}>
+                Queued At
+              </div>
+              <DatePicker
+                value={queuedAt}
+                onChange={(value, valueString) => setQueuedAt(value)} 
+                showTime
+              />
+            </Form.Field>
+            <Form.Field style={{textAlign:'center'}}>
+              <div style={{width:'100%', textAlign:'center'}}>
+                Scanned At
+              </div>
+              <DatePicker
+                value={scannedAt}
+                onChange={(value, valueString) => setScannedAt(value)} 
+                showTime
+              />
+            </Form.Field>
+            <Form.Field style={{textAlign:'center'}}>
+              <div style={{width:'100%', textAlign:'center'}}>
+                Finished At
+              </div>
+              <DatePicker
+                value={finishedAt}
+                onChange={(value, valueString) => setFinishedAt(value)} 
+                showTime
+              />
+            </Form.Field>
+          </Form.Group>
+          <div style={{width: '100%', textAlign:"center"}}>
+            <Button primary onClick={submitForm}>Submit</Button>
+          </div>
         </Form>
       </Segment>
     </div>
