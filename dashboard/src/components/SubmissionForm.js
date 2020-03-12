@@ -50,7 +50,7 @@ export default function SubmissionForm() {
   ]
   return(
     <div>
-      <Segment >
+      <Segment style={{width: '90%', align:'center', margin: 'auto'}}>
         <Form loading={loading}>
           <Form.Group widths="equal">
             <Form.Input
@@ -66,6 +66,7 @@ export default function SubmissionForm() {
               label="Status"
               options={selectStatus}
               placeholder="Status"
+              defaultValue={selectStatus[0].key}
               value={status}
               onChange={(_, {value}) => setStatus(value)}
             />
