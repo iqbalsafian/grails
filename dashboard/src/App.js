@@ -21,8 +21,9 @@ function App() {
         <Link to="/results">e</Link>
       </div>
       <Switch>
+        <Route path='/results/:id' component={ListOfFindings} exact />
         <Route path='/results' component={ResultLists} exact />
-        <Route path='' component={SubmissionForm} exact />
+        <Route path='/' component={SubmissionForm} exact />
       </Switch>
     </BrowserRouter>
   );

@@ -42,14 +42,21 @@ app.post('/test', (req, res) => {
   res.send('Endpoint works!')
 });
 
-app.post('/', (req, res) => {
+app.get('/', async (req, res) => {
+  console.log('extd')
+  const getRecords = pgClient
+    const lists = await pgClient.query('SELECT * from guardlists');
+    res.status(200).send(lists.rows);
+})
+
+app.post('/', async (req, res) => {
   const { repository_name, status, findings, queued_at, scanned_at, finished_at } = req.body;
   console.log(req.body)
   const id = uuid();
   
-  const addRecord = pgClient
+  const addRecord = await pgClient
     .query(
-      `INSERT INTO result (id, repository_name, status, findings, queued_at, scanned_at, finished_at)
+      `INSERT INTO guardlists (id, repository_name, status, findings, queued_at, scanned_at, finished_at)
        VALUES ($1, $2, $3, $4, $5, $6, $7)`,
        [id, repository_name, status, findings, Math.round(new Date(queued_at).getTime()/1000), Math.round(new Date(scanned_at).getTime()/1000), Math.round(new Date(finished_at).getTime()/1000)]
       )
