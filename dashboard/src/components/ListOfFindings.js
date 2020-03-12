@@ -24,8 +24,6 @@ export default function ListOfFindings() {
 
   return (
     <div style={{textAlign:'center', width:'90%', margin:'auto'}}>
-      List Of Findings {listObject.id}
-      <Button onClick={getListById}>Su</Button>
       {
         listObject && listObject.map((list) => {
           return (

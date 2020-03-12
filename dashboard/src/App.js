@@ -2,10 +2,10 @@ import React from 'react';
 import {
   BrowserRouter,
   Switch,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
-import { Header } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
+import Header from './components/Header';
 import SubmissionForm from './components/SubmissionForm';
 import ResultLists from './components/ResultLists';
 import ListOfFindings from './components/ListOfFindings';
@@ -14,16 +14,16 @@ import './App.css';
 function App() {
   return (
     <BrowserRouter>
-      <div align="center">
-        <Header as="h1" textAlign="center">GuardRails</Header>
-        <Link to="/">/</Link>
-        <Link to="/results">e</Link>
+      <div style={{minHeight: '100%', minWidth: '100%', backgroundColor: 'rgb(211,211,211)'}}>
+        <Container style={{backgroundColor: 'white', padding: '20px 20px', margin: '20px 20px'}}>
+          <Header />
+          <Switch>
+            <Route path='/results/:id' component={ListOfFindings} exact />
+            <Route path='/results' component={ResultLists} exact />
+            <Route path='/' component={SubmissionForm} exact />
+          </Switch>
+        </Container>
       </div>
-      <Switch>
-        <Route path='/results/:id' component={ListOfFindings} exact />
-        <Route path='/results' component={ResultLists} exact />
-        <Route path='/' component={SubmissionForm} exact />
-      </Switch>
     </BrowserRouter>
   );
 }

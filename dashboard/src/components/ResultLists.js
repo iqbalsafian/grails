@@ -22,8 +22,6 @@ export default function ResultLists() {
 
   return (
     <div style={{width:'90%', margin: 'auto'}}>
-      Result Lists
-      <Button onClick={getLists}>Get</Button>
       <Table celled color="grey">
         <Table.Header>
           <Table.Row textAlign="center">
