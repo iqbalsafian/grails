@@ -41,7 +41,13 @@ export default function ResultLists() {
                 <Table.Row key={list.id}>
                   <Table.Cell textAlign="right">{index+1}</Table.Cell>
                   <Table.Cell>
-                    <Link to={{pathname: `/results/${list.id}`}}>{list.repository_name}</Link>
+                    <Link 
+                      to={{
+                        pathname: `/results/${list.id}`
+                      }}
+                    >
+                      {list.repository_name}
+                    </Link>
                   </Table.Cell>
                   <Table.Cell textAlign="center">{list.status}</Table.Cell>
                   <Table.Cell style={{textAlign:'center'}}>

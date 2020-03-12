@@ -43,10 +43,13 @@ app.post('/test', (req, res) => {
 });
 
 app.get('/', async (req, res) => {
-  console.log('extd')
-  const getRecords = pgClient
-    const lists = await pgClient.query('SELECT * from guardlists');
-    res.status(200).send(lists.rows);
+  const lists = await pgClient.query('SELECT * from guardlists');
+  res.status(200).send(lists.rows);
+})
+
+app.get('/:id', async (req, res) => {
+  const list = await pgClient.query(`SELECT * from guardlists where id = '${req.params.id}'`)
+  res.status(200).send(list.rows);
 })
 
 app.post('/', async (req, res) => {

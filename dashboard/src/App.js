@@ -9,7 +9,6 @@ import { Header } from 'semantic-ui-react';
 import SubmissionForm from './components/SubmissionForm';
 import ResultLists from './components/ResultLists';
 import ListOfFindings from './components/ListOfFindings';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
