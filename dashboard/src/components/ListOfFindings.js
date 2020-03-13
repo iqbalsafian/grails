@@ -8,19 +8,19 @@ import { message } from 'antd';
 export default function ListOfFindings() {
   const { id } = useParams();
   const [listObject, setListObject] = useState('');
-  const getListById = async () => {
-    await axios.get(`http://localhost:3001/${id}`)
-      .then(response => {
-        setListObject(response.data)
-      })
-      .catch(err => {
-        message.error(err)
-      })
-  }
 
   useEffect(()=>{
+    const getListById = async () => {
+      await axios.get(`http://localhost:3001/${id}`)
+        .then(response => {
+          setListObject(response.data)
+        })
+        .catch(err => {
+          message.error(err)
+        })
+    }
     getListById();
-  }, [])
+  }, [setListObject, id])
 
   return (
     <div style={{textAlign:'center', margin:'auto', paddingTop: '15px'}}>
