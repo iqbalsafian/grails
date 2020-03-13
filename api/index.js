@@ -35,7 +35,7 @@ pgClient
       )
     `
   )
-  .catch(err=>console.log(err))
+  .catch(err=>console.log('err'))
 
 // test the api endpoint
 app.get('/test', (req, res) => {

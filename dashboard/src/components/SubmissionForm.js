@@ -46,11 +46,10 @@ export default function SubmissionForm() {
         setFinishedAt(moment(new Date(), 'DD-MM-YYYY HH:mm'));
       })
       .catch(err=>{
-        console.error(err);
+        message.error('There has been an error connecting to database');
       })
     } else {
       message.error('Please fill in the required fields');
-      console.log(validationError.length);
     }
     setLoading(false);
   }
