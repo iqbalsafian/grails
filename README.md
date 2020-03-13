@@ -27,3 +27,9 @@ Point your browser to
 By default, the api server runs on port 3001
 
 ~ Cheers ~
+
+![Screen 1](https://i.ibb.co/x6jcj39/1.png)
+
+![Screen 2](https://i.ibb.co/HTyZWkK/2.png)
+
+![Screen 3](https://i.ibb.co/DMcCDr2/3.png)
