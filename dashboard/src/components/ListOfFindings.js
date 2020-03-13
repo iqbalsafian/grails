@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { Card, Button, Table } from 'semantic-ui-react';
+import { Card, Button, Table, Breadcrumb } from 'semantic-ui-react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function ListOfFindings() {
   const { id } = useParams();
   const [listObject, setListObject] = useState('');
-
   const getListById = async () => {
     await axios.get(`http://localhost:3001/${id}`)
       .then(response => {
@@ -28,6 +28,15 @@ export default function ListOfFindings() {
         listObject && listObject.map((list) => {
           return (
             <div key={list.id} >
+              <Breadcrumb icon="right angle">
+                <Breadcrumb.Section link>
+                  <Link to='/results'>Back to Results</Link>
+                </Breadcrumb.Section>
+                <Breadcrumb.Divider />
+                <Breadcrumb.Section link>
+                  {list.id}
+                </Breadcrumb.Section>
+              </Breadcrumb>
               <Card style={{margin: 'auto'}}>
                 <Card.Content>
                   <Card.Header>
@@ -38,7 +47,7 @@ export default function ListOfFindings() {
                   </Card.Meta>
                 </Card.Content>
               </Card>
-              <Table>
+              <Table celled>
                 <Table.Header>
                   <Table.Row>
                     <Table.HeaderCell>
