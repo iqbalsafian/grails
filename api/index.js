@@ -87,11 +87,29 @@ app.put('/', async (req, res) => {
     .catch(e => {
       res
         .status(500)
-        .send('Encountered an internal server error while creating the record')
+        .send('Encountered an internal server error while updating the record')
     })
   
   res.status(201).send(`Data successfully updated`);
-})
+});
+
+app.delete('/', async (req, res) => {
+  const { id } = req.body;
+
+  const deleteRecord = await pgClient
+    .query(
+      `
+        DELETE FROM guardlists where id = ${id}
+      `
+    )
+    .catch(e => {
+      res
+        .status(500)
+        .send('Encountered an internal server error while updating the record')
+    })
+  
+  res.status(201).send('Data successfully deleted')
+});
 
 const port = process.env.PORT || 3001;
 const server = http.createServer(app);
