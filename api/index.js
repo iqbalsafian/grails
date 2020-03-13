@@ -54,7 +54,6 @@ app.get('/:id', async (req, res) => {
 
 app.post('/', async (req, res) => {
   const { repository_name, status, findings, queued_at, scanned_at, finished_at } = req.body;
-  console.log(req.body)
   const id = uuid();
   
   const addRecord = await pgClient
@@ -71,6 +70,28 @@ app.post('/', async (req, res) => {
   
   res.status(201).send(`Data succesfully added with ID ${id}`);
 });
+
+app.put('/', async (req, res) => {
+  const { id, repository_name, status, findings, queued_at, scanned_at, finished_at } = req.body;
+
+  const updateRecord = await pgClient
+    .query(
+      `
+        UPDATE guardlists set repository_name = $1, status = $2, findings = $3, queued_at = $4, scanned_at = $5, finished_at = $6
+        WHERE id = $7
+      `,
+      [
+        repository_name, status, findings, Math.round(new Date(queued_at).getTime()/1000), Math.round(new Date(scanned_at).getTime()/1000), Math.round(new Date(finished_at).getTime()/1000), id
+      ]
+    )
+    .catch(e => {
+      res
+        .status(500)
+        .send('Encountered an internal server error while creating the record')
+    })
+  
+  res.status(201).send(`Data successfully updated`);
+})
 
 const port = process.env.PORT || 3001;
 const server = http.createServer(app);
