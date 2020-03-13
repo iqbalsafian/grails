@@ -1,20 +1,31 @@
-version: "3.7"
-
+version: '3'
 services: 
+    postgres:
+        image: postgres:latest
     dashboard:
-        #container_name: dashboard
-        build: ./dashboard
-        ports:
-            - "3000:3000"
+        build: 
+            context: ./dashboard
+            dockerfile: Dockerfile
+        volumes:
+            - /app/node_modules
+            - ./client:/app
+        ports: 
+            - '3000:3000'
+        restart: on-failure
+        container_name: dashboard
+    api:
+        build: 
+            context: ./api
+            dockerfile: Dockerfile
+        ports: 
+            - '3001:3001'
+        restart: on-failure
+        container_name: api
         volumes: 
-            - ".:/app"
-            - "/app/node_modules"
-        environment: 
-            - REACT_APP_PORT=3000
-        expose:
-            - 3000
-        ports: 3000:3000
-        volumes: 
-            - ./dashboard/src:/app/src
-            - ./dashboard/public:/app/public
-        command: yarn start
+            - /app/node_modules
+            - ./api:/app
+            - PGUSER=postgres
+            - PGHOST=postgres
+            - PGDATABASE=postgres
+            - PGPASSWORD=
+            - PGPORT=5432

@@ -4,7 +4,6 @@ import axios from 'axios';
 import moment from 'moment';
 import { DatePicker, message } from 'antd';
 import { Header } from 'semantic-ui-react';
-import { HEADING } from '@blueprintjs/core/lib/esm/common/classes';
 
 export default function SubmissionForm() {
   const [repositoryName, setRepositoryName] = useState('');
@@ -28,7 +27,7 @@ export default function SubmissionForm() {
     if (queuedAt === '')
       setValidationError(validationError + 'The queued at field cannot be empty\n');
 
-    if (validationError.length) {
+    if (validationError.length === 0) {
       await axios.post('http://localhost:3001', {
         repository_name: repositoryName,
         status,
@@ -51,7 +50,7 @@ export default function SubmissionForm() {
       })
     } else {
       message.error('Please fill in the required fields');
-      console.log(validationError);
+      console.log(validationError.length);
     }
     setLoading(false);
   }
@@ -126,7 +125,7 @@ export default function SubmissionForm() {
                   </div>
                   <DatePicker
                     value={queuedAt}
-                    onChange={(value, valueString) => setQueuedAt(value)} 
+                    onChange={(value, _) => setQueuedAt(value)} 
                     showTime
                   />
                 </Form.Field>
@@ -136,7 +135,7 @@ export default function SubmissionForm() {
                   </div>
                   <DatePicker
                     value={scannedAt}
-                    onChange={(value, valueString) => setScannedAt(value)} 
+                    onChange={(value, _) => setScannedAt(value)} 
                     showTime
                   />
                 </Form.Field>

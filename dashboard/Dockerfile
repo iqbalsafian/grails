@@ -1,7 +1,10 @@
-FROM node:alpine
+FROM node:10-alpine AS alpine
 WORKDIR /app
-COPY package*.json /app/package.json
-COPY yarn.lock /app/yarn.lock
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+COPY package*.json .
+## install only the packages defined in the package-lock.json (faster than the normal npm install)
 RUN yarn install
+# Copy the contents of the project to the image
 COPY . .
-CMD [ "yarn", "start" ]
+# Run 'npm start' when the container starts.
+CMD ["yarn", "start"]
