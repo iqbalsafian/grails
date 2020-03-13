@@ -23,22 +23,22 @@ export default function ListOfFindings() {
   }, [id])
 
   return (
-    <div style={{textAlign:'center', width:'90%', margin:'auto'}}>
+    <div style={{textAlign:'center', width:'90%', margin:'auto', paddingTop: '15px'}}>
       {
         listObject && listObject.map((list) => {
           return (
-            <div key={list.id} >
-              <Breadcrumb icon="right angle">
-                <Breadcrumb.Section link>
+            <div key={list.id} style={{textAlign:'left'}}>
+              <Breadcrumb style={{paddingBottom: '15px'}}>
+                <Breadcrumb.Section>
                   <Link to='/results'>Back to Results</Link>
                 </Breadcrumb.Section>
                 <Breadcrumb.Divider />
-                <Breadcrumb.Section link>
+                <Breadcrumb.Section>
                   {list.id}
                 </Breadcrumb.Section>
               </Breadcrumb>
               <Card style={{margin: 'auto'}}>
-                <Card.Content>
+                <Card.Content style={{textAlign: 'center'}}>
                   <Card.Header>
                     { list.repository_name }
                   </Card.Header>
@@ -48,7 +48,7 @@ export default function ListOfFindings() {
                 </Card.Content>
               </Card>
               <Table celled>
-                <Table.Header>
+                <Table.Header style={{textAlign:'center'}}>
                   <Table.Row>
                     <Table.HeaderCell>
                       No
@@ -72,20 +72,20 @@ export default function ListOfFindings() {
                     list.findings.findings.map((finding, id)=>{
                       return (
                         <Table.Row key={id}>
-                          <Table.Cell>
+                          <Table.Cell style={{textAlign:'right'}}>
                             {id + 1}
                           </Table.Cell>
-                          <Table.Cell>
+                          <Table.Cell style={{textAlign: 'center'}}>
                             {finding.ruleId}
                           </Table.Cell>
                           <Table.Cell>
                             {finding.metadata.description}
                           </Table.Cell>
-                          <Table.Cell>
+                          <Table.Cell style={{textAlign: 'center'}}>
                             {finding.metadata.severity}
                           </Table.Cell>
                           <Table.Cell>
-                            {finding.location.path}
+                            {finding.location.path} : {finding.location.positions.begin.line}
                           </Table.Cell>
                         </Table.Row>
                       )
