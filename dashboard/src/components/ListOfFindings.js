@@ -20,7 +20,7 @@ export default function ListOfFindings() {
 
   useEffect(()=>{
     getListById();
-  })
+  }, [])
 
   return (
     <div style={{textAlign:'center', margin:'auto', paddingTop: '15px'}}>
