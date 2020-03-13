@@ -1,5 +1,4 @@
 import React from 'react';
-import { Header as SHeader, Menu } from 'semantic-ui-react';
 import { Navbar, NavbarGroup, NavbarHeading, NavbarDivider, Classes, Button } from '@blueprintjs/core';
 import { NavLink } from 'react-router-dom';
 

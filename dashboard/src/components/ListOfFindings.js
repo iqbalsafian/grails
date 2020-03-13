@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { Card, Button, Table, Breadcrumb } from 'semantic-ui-react';
+import { Card, Table, Breadcrumb } from 'semantic-ui-react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { message } from 'antd';
 
 export default function ListOfFindings() {
   const { id } = useParams();
@@ -13,14 +14,13 @@ export default function ListOfFindings() {
         setListObject(response.data)
       })
       .catch(err => {
-        console.log('error')
+        message.error(err)
       })
-    console.log(listObject)
   }
 
   useEffect(()=>{
     getListById();
-  }, [id])
+  })
 
   return (
     <div style={{textAlign:'center', width:'90%', margin:'auto', paddingTop: '15px'}}>

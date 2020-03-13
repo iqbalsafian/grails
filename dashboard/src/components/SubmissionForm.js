@@ -26,7 +26,7 @@ export default function SubmissionForm() {
     if (queuedAt === '')
       setValidationError(validationError + 'The queued at field cannot be empty\n');
 
-    if (validationError.length !== 0) {
+    if (validationError.length) {
       await axios.post('http://localhost:3001', {
         repository_name: repositoryName,
         status,
@@ -36,7 +36,7 @@ export default function SubmissionForm() {
         finished_at: finishedAt
       })
       .then(response=>{
-        message.success(response);
+        message.success(response.data);
         setRepositoryName('');
         setStatus('Queued');
         setFindings('');
@@ -45,20 +45,25 @@ export default function SubmissionForm() {
         setFinishedAt(moment(new Date(), 'DD-MM-YYYY HH:mm'));
       })
       .catch(err=>{
-        message.error(err);
+        console.error(err);
       })
     } else {
       message.error('Please fill in the required fields');
+      console.log(validationError);
     }
     setLoading(false);
   }
 
   const isValidJSONString = (str) => {
+    if (str === '')
+      return false;
+
     try {
       JSON.parse(str);
     } catch (e) {
       return false
     }
+
     return true;
   }
 

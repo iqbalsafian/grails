@@ -38,7 +38,7 @@ pgClient
   .catch(err=>console.log(err))
 
 // test the api endpoint
-app.post('/test', (req, res) => {
+app.get('/test', (req, res) => {
   res.send('Endpoint works!')
 });
 

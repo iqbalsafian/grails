@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Label, Table, Button } from 'semantic-ui-react';
+import { Label, Table } from 'semantic-ui-react';
 import axios from 'axios';
 import moment from 'moment';
 
