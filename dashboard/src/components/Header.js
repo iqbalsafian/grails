@@ -1,21 +1,25 @@
 import React from 'react';
 import { Header as SHeader, Menu } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Navbar, NavbarGroup, NavbarHeading, NavbarDivider, Classes, Button } from '@blueprintjs/core';
+import { NavLink } from 'react-router-dom';
 
 export default function Header() {
   return (
     <div align="center">
-      <Menu>
-        <Menu.Item>
-          <SHeader as="h1" textAlign="center">GuardRails</SHeader>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to="/">Submission Form</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to="/results">Record List</Link>
-        </Menu.Item>
-      </Menu>
+      <Navbar>
+        <NavbarGroup align="left">
+          <NavbarHeading>Grails</NavbarHeading>
+          <NavbarDivider />
+        </NavbarGroup>
+        <NavbarGroup align='center'>
+          <Button className={Classes.MINIMAL} text="">
+            <NavLink to="/">Submission Form</NavLink>
+          </Button>
+          <Button className={Classes.MINIMAL} text="">
+            <NavLink to="/results">Scan Lists</NavLink>
+          </Button>
+        </NavbarGroup>
+      </Navbar>
     </div>
   )
 }
