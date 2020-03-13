@@ -14,8 +14,8 @@ import './App.css';
 function App() {
   return (
     <BrowserRouter>
-      <div style={{minHeight: '100%', minWidth: '100%', backgroundColor: 'rgb(211,211,211)'}}>
-        <Container style={{backgroundColor: 'white', padding: '20px 20px', margin: '20px 20px'}}>
+      <div style={{}}>
+        <Container style={{backgroundColor: 'white', padding: '20px 20px'}}>
           <Header />
           <Switch>
             <Route path='/results/:id' component={ListOfFindings} exact />

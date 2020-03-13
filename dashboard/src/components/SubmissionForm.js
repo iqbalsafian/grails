@@ -3,6 +3,8 @@ import { Form, Segment, Select, Button } from 'semantic-ui-react';
 import axios from 'axios';
 import moment from 'moment';
 import { DatePicker, message } from 'antd';
+import { Header } from 'semantic-ui-react';
+import { HEADING } from '@blueprintjs/core/lib/esm/common/classes';
 
 export default function SubmissionForm() {
   const [repositoryName, setRepositoryName] = useState('');
@@ -83,7 +85,8 @@ export default function SubmissionForm() {
   ]
   return(
     <div>
-      <Segment style={{width: '90%', align:'center', margin: 'auto'}}>
+      <Header as="h2" style={{textAlign: 'center', margin: 'auto', padding: '10px 0'}}>Submission Form</Header>
+      <Segment style={{ align:'center', margin: 'auto'}}>
         <Form loading={loading}>
           <Form.Group widths="equal">
             <Form.Input

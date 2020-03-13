@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { Card, Table, Breadcrumb } from 'semantic-ui-react';
+import { Card, Table, Breadcrumb, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { message } from 'antd';
@@ -23,20 +23,21 @@ export default function ListOfFindings() {
   })
 
   return (
-    <div style={{textAlign:'center', width:'90%', margin:'auto', paddingTop: '15px'}}>
+    <div style={{textAlign:'center', margin:'auto', paddingTop: '15px'}}>
       {
         listObject && listObject.map((list) => {
           return (
             <div key={list.id} style={{textAlign:'left'}}>
               <Breadcrumb style={{paddingBottom: '15px'}}>
                 <Breadcrumb.Section>
-                  <Link to='/results'>Back to Results</Link>
+                  <Link to='/results'>Back to Scan Lists</Link>
                 </Breadcrumb.Section>
                 <Breadcrumb.Divider />
                 <Breadcrumb.Section>
                   {list.id}
                 </Breadcrumb.Section>
               </Breadcrumb>
+              <Header as="h2" style={{textAlign: 'center', margin: 'auto', padding: '10px 0'}}>Scan Details</Header>
               <Card style={{margin: 'auto'}}>
                 <Card.Content style={{textAlign: 'center'}}>
                   <Card.Header>

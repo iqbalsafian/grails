@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Label, Table } from 'semantic-ui-react';
+import { Label, Table, Header } from 'semantic-ui-react';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -21,7 +21,8 @@ export default function ResultLists() {
 
 
   return (
-    <div style={{width:'90%', margin: 'auto'}}>
+    <div style={{margin: 'auto'}}>
+      <Header as="h2" style={{textAlign: 'center', margin: 'auto', padding: '10px 0'}}>Scan Lists</Header>
       <Table celled color="grey">
         <Table.Header>
           <Table.Row textAlign="center">
@@ -65,7 +66,7 @@ export default function ResultLists() {
                         }
                       </Label.Detail>
                     </Label>
-                    <Label color="green">
+                    <Label color="yellow">
                       Others
                       <Label.Detail>
                         {
