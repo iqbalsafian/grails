@@ -3,7 +3,7 @@
 
 Please clone this repository by using the following command
 
-> git clone http://github.com/iqbalsafian/grails your-select-folder
+> git clone https://github.com/iqbalsafian/grails.git your-select-folder
 
 Then run
 
