@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 export default function Header() {
   return (
     <div align="center">
-      <Navbar>
+      <Navbar className="bp3-dark">
         <NavbarGroup align="left">
           <NavbarHeading>Grails</NavbarHeading>
           <NavbarDivider />

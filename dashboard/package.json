@@ -23,7 +23,8 @@
     "react-semantic-ui-datepickers": "^2.3.0",
     "react-widgets": "^4.4.11",
     "react-widgets-globalize": "^5.0.20",
-    "semantic-ui-react": "^0.88.2"
+    "semantic-ui-react": "^0.88.2",
+    "validate.js": "^0.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
